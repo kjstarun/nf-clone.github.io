@@ -28,7 +28,6 @@
             background-repeat: no-repeat;
             background-size:inherit;
             font-family: Arial, Helvetica, sans-serif;
-            /* height:150vh; */
             backdrop-filter: brightness(50%);
         }
         .logo{
@@ -38,6 +37,7 @@
             background-color: rgba(0, 0, 0, 0.735);
             height: 550px;
             width: 450px;
+            border-radius: 5px;
             display: flex;
             margin-top: 2%;
             margin-left: auto;
@@ -78,7 +78,6 @@
             text-align: center;
         }
         .help-container{
-            /* background-color: blueviolet; */
             margin-top: 4%;
             display: flex;
             color: #B3B3B3;
@@ -135,12 +134,11 @@
             list-style-type: none;
         }
         .foot{
-            max-width: 1000px;
+            max-width: 75%;
             margin: 0 auto;
         }
         #lang{
             background-color: #000;
-            /* background-image: none; */
             border: 1px solid #333;
             color: inherit;
             padding: 12px;
@@ -148,8 +146,6 @@
             margin-top: 20px;
             margin-bottom: 20px;
             text-align: center;
-            /* appearance: none; */
-            /* background: #fff; */
         }
         a{
             text-decoration: none;
@@ -168,10 +164,10 @@
     <div class="parent-container">
         <div class="child-container-1">
             <h3 style="color: #fff;">Sign In</h3>
-            <form class="form" action="" method="post">
-                <input type="text" placeholder="Email or phone number">
+            <form class="form" action="" method="get">
+                <input type="text" placeholder="Email or phone number" id="username">
                 <input type="password" placeholder="Password">
-                <button>Sign In</button>
+                <button onclick="showNotification()">Sign In</button>
             </form>
             <div class="help-container">
                 <input type="checkbox" name="remember" value="saveinfo" checked>
@@ -206,6 +202,17 @@
             </select>
         </div>
     </footer>
-
+    <script>       
+        function showNotification(){
+            var x = document.getElementById("username").value;
+                if(window.Notification && Notification.permission !== "denied") {
+            Notification.requestPermission(function(status) {
+                n = new Notification('Welcome', { 
+                  body: x,
+                }); 
+            });
+        }
+        }
+	</script>
 </body>
 </html>
